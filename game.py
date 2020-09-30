@@ -201,6 +201,12 @@ class Game:
         return (self.dealer.lost and
                 len(self.players.get_losers()) == len(self.players.get()))
 
+    def __all_players_lost(self):
+        """
+        Return True if all players lost lost :(
+        """
+        return (len(self.players.get_losers()) == len(self.players.get()))
+
     def __show_outcome(self):
         """
         Log current round's status
@@ -271,16 +277,15 @@ class Game:
         """
         The dealer's turn at the game
         """
+        # stop if already won
+        if self.__all_players_lost():
+            log.debug("Dealer already won! [stands... and drops the mic]")
+            self.stand(self.dealer)
+            return
+
         while True:
             time.sleep(0.1)
             s = self.dealer.get_cards_sum()
-            # stop if already won
-            for player in self.players.players:
-                if s <= player.get_cards_sum():
-                    continue
-                log.debug("Dealer already won! [stands... and drops the mic]")
-                self.stand(self.dealer)
-                break
             # stop only if more than 17
             if s > 17:
                 self.stand(self.dealer)
