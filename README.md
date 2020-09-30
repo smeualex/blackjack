@@ -38,6 +38,7 @@ Reprezinta un pachet standard de 52 de carti de joc.
 - metoda pentru extragerea unei carti
 
 Amestecarea pachetului se face de un numar aleator de ori pentru a simula o amestecare cat mai realista; de asemenea timpul dintre amestecari este aleator.
+> modulul `random` este folosit pentru generarea de numere aleatoare
 
 ```Python
 number_of_shuffles = random.randrange(10, 50)
@@ -127,3 +128,5 @@ Runda se desfasoara intr-o maniera liniara:
 4. Daca dealerul pierde:
 4.1. Jucatorii care au peste 21 vor pierde
 4.2. Jucatorii care au sub 21 vor castiga
+5. Fiecare jucator castigator va castiga doar valoarea pariata de el (isi va dubla suma pariata)
+6. Jocul se joaca jucator vs. dealer a.i. un jucator poate castiga iar unul poate pierde, rezultand ca dealerul a castigat intr-un "meci" si a pierdut in celalalt.
