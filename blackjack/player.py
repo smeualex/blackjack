@@ -1,7 +1,8 @@
 import os
 import logging
-import deck
 import random
+
+from blackjack.deck import Deck
 
 log = logging.getLogger("player")
 
@@ -45,17 +46,17 @@ class IPlayer:
             Helper internal method
             Returns true if we can change an ace from 11 to 1
             """
-            return s + deck.Deck.ace.value[0] > 21 and added_ace_11 is True
+            return s + Deck.ace.value[0] > 21 and added_ace_11 is True
 
         added_ace_11 = False
         for i in range(0, aces_in_deck):
-            if s + deck.Deck.ace.value[1] <= 21:
+            if s + Deck.ace.value[1] <= 21:
                 # we can safely add the ace as an 11
-                s += deck.Deck.ace.value[1]
+                s += Deck.ace.value[1]
             else:
                 # if we have only one ace add it as a 1
                 if aces_in_deck == 1:
-                    s += deck.Deck.ace.value[0]
+                    s += Deck.ace.value[0]
                     added_ace_11 = True
                 else:
                     # we have more than 1 ace in the deck
@@ -65,7 +66,7 @@ class IPlayer:
                     if can_we_change_ace() and i > 0:
                         s -= 10
                     # add the ace as a `1`
-                    s += deck.Deck.ace.value[0]
+                    s += Deck.ace.value[0]
         return s
 
     def get_cards_sum(self):
@@ -75,10 +76,10 @@ class IPlayer:
         """
         # sum the non-aces first
         s = sum([card.value for card in self.current_hand
-                 if card.type != deck.Deck.ace_card])
+                 if card.type != Deck.ace_card])
         # find the number of aces in the deck
         aces_in_deck = sum([1 for card in self.current_hand
-                           if card.type == deck.Deck.ace_card])
+                           if card.type == Deck.ace_card])
         # we now have to add `aces_in_deck` aces to
         # the total sum of the cards
         s = self.__add_aces(s, aces_in_deck)
@@ -115,7 +116,7 @@ class IPlayer:
     def bet_lost(self):
         pass
 
-    def draw(Self):
+    def draw(self):
         pass
 
 
@@ -194,5 +195,5 @@ class Player(IPlayer):
         self.jetoane += (2 * self.bet_value)
 
     def draw(self):
-        log.debug('Player %s draw' % player.nume)
+        log.debug('Player %s draw' % self.nume)
         self.jetoane += self.bet_value

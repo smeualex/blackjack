@@ -1,7 +1,7 @@
-from util import delay
-
 import random
 import logging
+
+from blackjack.util import delay
 
 log = logging.getLogger("deck")
 

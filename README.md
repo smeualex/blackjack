@@ -5,6 +5,28 @@ Implementare simpla a unul joc de `blackjack` conform cerintelor proiectului.
 
 Jocul este exclusiv in consola.
 
+## Structura proiectului
+
+```
+/
+|-start.bat                 script pentru pornirea programului principal
+|-main.py                   programul principal
+|-README.md                 acest fisier
+|-README.pdf                acest fisier in format pdf (generat automat)
+|-.gitignore                standard stuff
+|
+|-/blackjack                sursele programului
+  |- deck.py                Card, Deck
+  |- game_outcome.py        game_outcome
+  |- player.py              IPlayer, Player, Dealer
+  |- registered_players     Players
+  |- util.py                nu se putea fara un `util` :)
+|
+|-/logs                     logurile programului
+|
+|-/assets                   fisiere de input pentru program. fisierele contin lista de jucatori
+```
+
 ## Clase
 
 ### `IPlayer`

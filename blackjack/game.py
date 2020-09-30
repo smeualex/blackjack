@@ -1,11 +1,11 @@
 import logging
 import time
 
-from deck import Deck
-from player import Dealer
-from util import delay
-from game_outcome import game_outcome
-from registered_players import Players
+from blackjack.deck import Deck
+from blackjack.player import Dealer
+from blackjack.util import delay
+from blackjack.game_outcome import game_outcome
+from blackjack.registered_players import Players
 
 log = logging.getLogger("game")
 
@@ -16,7 +16,7 @@ def log_and_print(msg, log_f=logging.info, end='\n'):
 
 
 class Game:
-    def __init__(self):
+    def __init__(self, players_file):
         """
         A new game
             - registered players are taken from input file
@@ -24,7 +24,7 @@ class Game:
             - a new fresh deck
             - deck is shuffled
         """
-        self.players = Players()
+        self.players = Players(players_file)
         self.dealer = Dealer(1000)
         self.deck = Deck()
         self.deck.log()

@@ -1,7 +1,8 @@
 import os
 import random
 import logging
-from player import Player
+
+from blackjack.player import Player
 
 log = logging.getLogger("players")
 
@@ -16,17 +17,14 @@ class Players:
     Registered players to play the game
     Wrapper around player list
     """
-    def __init__(self):
+    def __init__(self, players_file):
         """
         Load the players file
         """
         PLAYERS_FILE = 'ListaParticipanti.txt'
         self.players = []
         self.broke_players = []
-        cwd = os.path.dirname(os.path.realpath(__file__))
-        players_file = os.path.join(cwd, 'assets', PLAYERS_FILE)
         self.__load_players_from_file(players_file)
-        # create the player list
         self.__check_number_of_players()
 
     def broke(self, player):
@@ -104,8 +102,9 @@ class Players:
                                  int(jetoane))
                     self.players.append(tmp)
         except FileNotFoundError as err:
-            log.error("FATAL ERROR - File %s not found" % player_file)
-            log.error(err)
+            log_and_print("FATAL ERROR - File %s not found" % player_file,
+                          log_f=logging.error)
+            log_and_print(err, log_f=logging.error)
             exit(1)
         except TypeError as err:
             log.error("FATAL ERROR - File %s is not properly formatted" %

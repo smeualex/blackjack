@@ -2,11 +2,15 @@ import os
 import logging
 import datetime
 
-from deck import Deck
-from player import Dealer
-from game import Game
+from blackjack.deck import Deck
+from blackjack.player import Dealer
+from blackjack.game import Game
+
+PLAYERS_FILE = 'ListaParticipanti.txt'
 
 log = logging.getLogger("blackjack")
+cwd = os.path.dirname(os.path.realpath(__file__))
+players_file = os.path.join(cwd, 'assets', PLAYERS_FILE)
 
 
 def init():
@@ -14,7 +18,6 @@ def init():
     now = datetime.datetime.now()
     str_now = now.strftime('%Y%m%d_%H%M%S')
 
-    cwd = os.path.dirname(os.path.realpath(__file__))
     log_file_name = 'blackjack_' + str_now + '.log'
     log_file = os.path.join(cwd, 'logs', log_file_name)
     logging.basicConfig(
@@ -35,7 +38,7 @@ def log_and_print(msg, log_f=logging.info, end='\n'):
 def main():
     init()
 
-    game = Game()
+    game = Game(players_file)
     while game.players_in_game() > 0 and game.new_round():
         game.run()
 
