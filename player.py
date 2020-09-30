@@ -139,9 +139,31 @@ class Player(IPlayer):
             self.varsta, self.jetoane, self.bet_value)
         return s
 
-    def bet(self, bet_val):
-        self.bet_value = bet_val
-        self.jetoane -= bet_val
+    def bet(self):
+        while True:
+            try:
+                log_and_print('')
+                bet_value = int(input(' > %s place your bet: '
+                                      % self.nume))
+            except ValueError:
+                print(' > Please enter only digits for the bet amount')
+                continue
+
+            if bet_value > self.jetoane:
+                print(' > You\'re not that rich!!!'
+                      ' Please enter a bet lower'
+                      ' than your total amount [%d] !!!'
+                      % self.jetoane)
+                continue
+
+            if bet_value < 0:
+                print(' > Really?! Try again!')
+                continue
+            break
+        # set the player's bet
+        self.bet_value = bet_value
+        self.jetoane -= bet_value
+        return bet_value
 
     def reset_bet(self):
         self.bet_value = 0

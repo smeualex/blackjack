@@ -88,33 +88,7 @@ class Game:
         """
         log.debug('Setting bets...')
         for player in self.players.players:
-            while True:
-                try:
-                    log_and_print('')
-                    bet_value = int(input(' > %s place your bet: '
-                                          % player.nume))
-                except ValueError:
-                    print(' > Please enter only digits for the bet amount')
-                    continue
-
-                if bet_value > player.jetoane:
-                    print(' > You\'re not that rich!!!'
-                          ' Please enter a bet lower'
-                          ' than your total amount [%d] !!!'
-                          % player.jetoane)
-                    continue
-
-                if bet_value < 0:
-                    print(' > Really?! Try again!')
-                    continue
-                break
-            # set the player's bet
-            player.bet(bet_value)
-            self.total_bets += bet_value
-
-        # log player after the bets
-        for player in self.players.players:
-            log.debug(player)
+            self.total_bets += player.bet()
 
     def hit(self, player):
         card = self.deck.draw_card()
