@@ -25,6 +25,7 @@ Jocul este exclusiv in consola.
 |-/logs                     logurile programului
 |
 |-/assets                   fisiere de input pentru program. fisierele contin lista de jucatori
+|-.vscode                   settings used in `vscode` IDE
 ```
 
 ## Clase
@@ -143,7 +144,7 @@ Runda se desfasoara intr-o maniera liniara:
     7.1.2. Daca nu sunt destule carti se va folosi un pachet nou si amestecat
     - raspuns negativ -> jocul se termina si aplicatia se inchide
 
-### Reguli Joc
+### Reguli Joc (presupuneri personale)
 1. As-ul valoreaza 1 sau 11
 2. Valoarea As-ului poate fi schimbata oricand din 1 in 11 sau invers (varianta cea mai buna va fi aleasa)
 3. Daca toti jucatorii au peste 21 la final, dealer-ul castiga automat
@@ -152,3 +153,4 @@ Runda se desfasoara intr-o maniera liniara:
 4.2. Jucatorii care au sub 21 vor castiga
 5. Fiecare jucator castigator va castiga doar valoarea pariata de el (isi va dubla suma pariata)
 6. Jocul se joaca jucator vs. dealer a.i. un jucator poate castiga iar unul poate pierde, rezultand ca dealerul a castigat intr-un "meci" si a pierdut in celalalt.
+7. In cazul in care jucatorii castiga "prea mult" si suma dealer-ului scade sub 100, acesta se va "imprumuta" de la casino pana la 2000$ pentru a putea continua jocul.
