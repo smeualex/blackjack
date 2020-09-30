@@ -64,7 +64,7 @@ class game_outcome:
         Dealer went over 21
         TODO: All players who are under 21 win
         """
-        self.dealer.lost = True
+        self.game.dealer.lost = True
 
         winners = []
         for player in self.game.players.get_winners():
