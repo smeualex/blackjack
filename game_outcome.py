@@ -62,20 +62,9 @@ class game_outcome:
     def __dealer_lost(self):
         """
         Dealer went over 21
-        TODO: All players who are under 21 win
         """
         self.game.dealer.lost = True
-
-        winners = []
-        for player in self.game.players.get_winners():
-            max_sum = 0
-            sum_player = player.get_cards_sum()
-            if max_sum < sum_player:
-                max_sum = sum_player
-                winners = []
-                winners.append(player)
-            elif max_sum == sum_player:
-                winners.append(player)
+        winners = self.game.players.get_winners()
         # we have the winner(s)
         log_and_print('')
         log_and_print('Winners: ')
