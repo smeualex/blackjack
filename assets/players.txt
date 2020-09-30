@@ -1,0 +1,4 @@
+George	Mihai	24	ROU	890
+Deroi	Xavier	41	FRA	1020
+Joudl	Petr	38	CZE	900
+Rosa	Ana	27	ITA	1140
