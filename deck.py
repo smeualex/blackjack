@@ -42,6 +42,7 @@ class Deck:
         """
         Create a deck of 52 standard cards
         """
+        log_and_print(' > Got a new fresh deck...')
         self.card_deck = [Card(card[0], suite, card[1])
                           for card in self.card_names
                           for suite in self.card_suites]
@@ -66,11 +67,14 @@ class Deck:
         log_and_print('')
         log_and_print(' > Shuffling the cards', end='')
         random.seed()
+
         number_of_shuffles = random.randrange(10, 50)
+
         log.debug("Shuffling the deck %d times" % number_of_shuffles)
         for i in range(0, number_of_shuffles):
             delay(random.randrange(30, 70, 5))
             random.shuffle(self.card_deck)
+
         log_and_print('')
         log_and_print("Shuffled deck")
 

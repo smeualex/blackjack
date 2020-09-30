@@ -105,20 +105,39 @@ class IPlayer:
             return ('%s [%s] - %d' %
                     (self.nume, self.get_cards_str(), card_sum)) + blackjack
 
-    def reset_hand(self):
+    def reset(self):
         self.current_hand = []
+        self.lost = False
+
+    def bet_won(self):
+        pass
+
+    def bet_lost(self):
+        pass
+
+    def draw(Self):
+        pass
 
 
 class Dealer(IPlayer):
     def __init__(self, jetoane=2000):
         super().__init__("dealer", jetoane)
+        self.balance = 0
 
     def bet_won(self, amount):
+        log.debug('Dealer won %d' % amount)
         self.jetoane += amount
+        self.balance += amount
+
+    def bet_lost(self, amount):
+        log.debug('Dealer lost %d' % amount)
+        self.lost = True
+        self.jetoane -= amount
+        self.balance -= amount
 
     def reset_for_new_game(self):
-        self.current_hand = []
-        self.lost = False
+        self.reset()
+        self.balance = 0
 
 
 class Player(IPlayer):
@@ -165,8 +184,15 @@ class Player(IPlayer):
         self.jetoane -= bet_value
         return bet_value
 
-    def reset_bet(self):
-        self.bet_value = 0
+    def reset_for_new_game(self):
+        self.reset()
+        self.balance = 0
 
     def bet_won(self):
+        log.debug('Player %s won %d' %
+                  (self.nume, (2 * self.bet_value)))
         self.jetoane += (2 * self.bet_value)
+
+    def draw(self):
+        log.debug('Player %s draw' % player.nume)
+        self.jetoane += self.bet_value

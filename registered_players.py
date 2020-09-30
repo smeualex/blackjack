@@ -40,9 +40,7 @@ class Players:
 
     def reset_for_new_game(self):
         for player in self.players:
-            player.reset_bet()
-            player.reset_hand()
-            player.lost = False
+            player.reset_for_new_game()
 
     def get(self, all=True, losers=False):
         """

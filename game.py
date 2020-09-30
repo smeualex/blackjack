@@ -25,7 +25,6 @@ class Game:
             - deck is shuffled
         """
         self.players = Players()
-        # self.self.losers = []
         self.dealer = Dealer(1000)
         self.deck = Deck()
         self.deck.log()
@@ -216,8 +215,8 @@ class Game:
                           (self.dealer.nume, self.dealer.jetoane,
                            self.dealer.get_cards_str(),
                            self.dealer.get_cards_sum(),
-                           "LOSES" if self.dealer.lost else "WINS",
-                           ''))
+                           "+" if self.dealer.balance >= 0 else "-",
+                           str(abs(self.dealer.balance))))
             # players
             for player in self.players.players:
                 log_and_print(fmt %

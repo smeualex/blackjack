@@ -19,7 +19,7 @@ class game_outcome:
             - dealer gets the player's bet
             - remove the bet value from the total bets
         """
-        self.game.dealer.jetoane += player.bet_value
+        self.game.dealer.bet_won(player.bet_value)
         self.game.total_bets -= player.bet_value
 
     def __player_wins(self, player):
@@ -30,17 +30,18 @@ class game_outcome:
             - dealer loses the player's bet value
         """
         # player wins - 1:1
-        player.jetoane += (2*player.bet_value)
+        player.bet_won()
+        # remove money from the dealer
+        self.game.dealer.bet_lost(player.bet_value)
         # remove money from the total bets
         self.game.total_bets -= player.bet_value
-        # remove money from the dealer
-        self.game.dealer.jetoane -= player.bet_value
 
     def __draw(self, player):
         """
         It's a draw
         """
-        player.jetoane += player.bet_value
+        player.draw()
+        # remove money from the total bets
         self.game.total_bets -= player.bet_value
 
     def __all_players_over_21(self):
@@ -48,7 +49,7 @@ class game_outcome:
         All players have results over 21
         """
         log_and_print(' > All players lost')
-        # the dealer lost
+        # the dealer lost -- should not happen in this case
         if self.sum_dealer > 21:
             log_and_print(' > Dealer lost')
             log_and_print('  --Everybody lost-- ')
@@ -58,12 +59,14 @@ class game_outcome:
         else:
             log_and_print(' > Dealer WINS!!!')
             self.game.dealer.bet_won(self.game.total_bets)
+            self.game.total_bets = 0
 
     def __dealer_lost(self):
         """
         Dealer went over 21
         """
-        self.game.dealer.lost = True
+        # self.game.dealer.lost = True
+        
         winners = self.game.players.get_winners()
         # we have the winner(s)
         log_and_print('')
@@ -71,6 +74,7 @@ class game_outcome:
         for player in winners:
             log_and_print(' > %s     WON %d' % (str(player), player.bet_value))
             self.__player_wins(player)
+            # self.game.dealer.bet_lost(player.bet_value)
         # remaining players lost
         for player in self.game.players.get():
             if player not in winners:
@@ -116,6 +120,6 @@ class game_outcome:
             self.__determine_winner()
 
         # any remaining bets go to the dealer
-        self.game.dealer.jetoane += self.game.total_bets
+        self.game.dealer.bet_won(self.game.total_bets)
         # update the losers list
         losers = self.game.players.get_losers()
