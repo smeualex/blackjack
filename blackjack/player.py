@@ -3,6 +3,7 @@ import logging
 import random
 
 from blackjack.deck import Deck
+from blackjack.util import delay
 
 log = logging.getLogger("player")
 
@@ -136,6 +137,15 @@ class Dealer(IPlayer):
         self.jetoane -= amount
         self.balance -= amount
 
+        if self.jetoane < 100:
+            log_and_print('You lucky bastards!!!')
+            log_and_print('Dealer has to borrow some money from the casino')
+            for i in range(1, 20):
+                delay()
+            self.jetoane = 2000
+            log.info(' >> dealer borrowed money from the casino'
+                     '. now has = %d' % self.jetoane)
+
     def reset_for_new_game(self):
         self.reset()
         self.balance = 0
@@ -162,7 +172,6 @@ class Player(IPlayer):
     def bet(self):
         while True:
             try:
-                log_and_print('')
                 bet_value = int(input(' > %s place your bet: '
                                       % self.nume))
             except ValueError:

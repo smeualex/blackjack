@@ -28,8 +28,7 @@ class Card:
 class Deck:
     ace_card = " A"
     ace = Card(" A", "♠", [1, 11])
-    two = Card(" 2", "♠", 2)
-    king = Card(" K", "♠", 10)
+
     card_names = [
         (" 2", 2),  (" 3", 3),       (" 4", 4),  (" 5", 5),
         (" 6", 6),  (" 7", 7),       (" 8", 8),  (" 9", 9),
@@ -64,7 +63,6 @@ class Deck:
         """
         Shuffle the deck for a random number of times
         """
-        log_and_print('')
         log_and_print(' > Shuffling the cards', end='')
         random.seed()
 
@@ -76,7 +74,7 @@ class Deck:
             random.shuffle(self.card_deck)
 
         log_and_print('')
-        log_and_print("Shuffled deck")
+        log_and_print(" > Deck shuffled")
 
     def draw_card(self):
         """

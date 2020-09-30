@@ -118,9 +118,9 @@ class Game:
         answer = ' '
         while answer != 'y' and answer != 'n':
             if self.rounds_played > 0:
-                msg = "Fancy another round? (Y)es or (N)o: "
+                msg = "\nFancy another round? (Y)es or (N)o: "
             else:
-                msg = "Shall we begin a game?  (Y)es or (N)o: "
+                msg = "\nShall we begin a game?  (Y)es or (N)o: "
             answer = input(msg).lower()
         if answer == 'y':
             self.rounds_played += 1
@@ -196,9 +196,15 @@ class Game:
 
         # print format
         # ' name[money] : cards list | cards sum - [WON/LOST] bet_value
-        fmt = ' %12s[%4d$] : %24s | %2d | %5s %4s$'
+        fmt = ' %12s[%4s$] : %24s | %2s | %5s %4s$'
         fmt_l = ' %12s[%4d$] LOST'
         fmt_b = ' %12s[%4d$]'
+
+        # print header
+        log_and_print(fmt % (
+            'Name', 'Amt', 'Card list', 'S', 'Stats', ''
+        ))
+        log_and_print('-' * 66)
 
         # all lost
         if self.__everyone_lost():
@@ -223,7 +229,7 @@ class Game:
                               (player.nume, player.jetoane,
                                player.get_cards_str(),
                                player.get_cards_sum(),
-                               "LOSES" if player.lost else "WINS",
+                               "-" if player.lost else "+",
                                str(player.bet_value)))
 
         # bankrupts
