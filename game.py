@@ -120,24 +120,22 @@ class Game:
         card = self.deck.draw_card()
         player.draw_card(card)
 
-        log_and_print('%s> %s drew a card - [%s]' %
-                      (' ' * 80, player.nume, str(card)))
+        log_and_print('\t\t>> %s drew a card - [%s]' %
+                      (player.nume, str(card)))
 
         if(player.get_cards_sum() == 21):
-            log_and_print('%s > %s ' % (' ' * 80, player.display_name()))
+            log_and_print('\t\t>> %s ' % (player.display_name()))
 
         if(player.get_cards_sum() > 21):
             player.lost = True
-            log_and_print('%s > %s is done' % (' ' * 80,
-                          player.display_name()))
+            log_and_print('\t\t>> %s is done' % (player.display_name()))
             return -1
 
         return 0
 
     def stand(self, player):
-        log_and_print('%s> %s stands [sum=%d]' %
-                      (' ' * 80,
-                       player.display_name(), player.get_cards_sum()))
+        log_and_print('\t\t>> %s stands [sum=%d]' %
+                      (player.display_name(), player.get_cards_sum()))
         log_and_print('-' * 80)
 
     def players_in_game(self):
