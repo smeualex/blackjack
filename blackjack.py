@@ -6,8 +6,6 @@ from deck import Deck
 from player import Dealer
 from game import Game
 
-
-# current dir
 log = logging.getLogger("blackjack")
 
 
