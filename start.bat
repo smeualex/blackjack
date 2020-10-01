@@ -1,3 +1,5 @@
 @echo off
-python ./blackjack.py
+chcp 65001
+cls
+python ./main.py
 pause
