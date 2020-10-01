@@ -154,14 +154,6 @@ class Game:
             log_and_print(fmt %
                           (player.nume, player.jetoane,
                            player.get_cards_str()))
-        # bankrupts
-        if len(self.players.broke_players) > 0:
-            log_and_print('')
-            log_and_print('Went bankrupt: ')
-            for player in self.players.broke_players:
-                log_and_print(fmt %
-                              (player.nume, player.jetoane,
-                               player.get_cards_str()))
 
         # footer
         log.debug('-' * 80)
