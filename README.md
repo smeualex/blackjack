@@ -1,9 +1,20 @@
-# Proiect BLACKJACK
+# Proiect BLACKJACK - Alexandru Smeu [30.09.2020]
+
+## Prerequisites
+1. Python trebuie instalat
+    > a fost testat pe Python 3.8.5
+
+2. Ideal un shell saun terminal emulator care suporta Unicode din cauza folosirii simbolurilor pentru carti: ♠, ♡, ♢, ♣
+    > in win cmd nu am reusit sa afisez corect ♡, ♢; motiv pentru care simbolurile au fost schimbate cu ♥, ♦
 
 ## Scurta descriere
 Implementare simpla a unul joc de `blackjack` conform cerintelor proiectului.
 
 Jocul este exclusiv in consola.
+
+> **Curiozitate personala**: in cadrul jocului am implementat o "animatie"(mult spus) f simpla cand amesteca pachetul si in alte momente - este afisat un mesaj si apar niste punctulete la o valoare random de timp (cateva zeci de ms).]
+> Totul merge ok in terminal emulatorul din IDE (VsCode) dar rulat din win cmd, apare direct mesajul final dupa ceea ce pare a fi suma totala a sleep-urilor adunata, fara "animatie"
+> M-ar ajuta daca imi poti raspunde de ce functioneaza asa! :)
 
 ## Structura proiectului
 
