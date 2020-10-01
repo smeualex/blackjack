@@ -185,7 +185,7 @@ class Player(IPlayer):
                       % self.jetoane)
                 continue
 
-            if bet_value < 0:
+            if bet_value <= 0:
                 print(' > Really?! Try again!')
                 continue
             break
